@@ -3,12 +3,17 @@ package com.neppplus.lottosimulator_20220302
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
 //    컴퓨터다 뽑은 당첨번호 6개를 저장할 ArrayList
     val mWinNumberList = ArrayList<Int>()
+    var mBonusNum = 0   // 보너스번호는 매 판마다 새로 뽑아야함. 변경소지 0, 화면이 어딘지는 줄 필요X 바로 대입 var
+
+//    당첨번호를 보여줄 6개의 덱스트뷰를 담아둘 Arraylist
+    val mWinNumTextViewList = ArrayList<TextView>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,14 +56,30 @@ class MainActivity : AppCompatActivity() {
 //        만들어진 당첨번호 6개를 -> 텍스트뷰에 표현
         Log.d("당첨번호", mWinNumberList.toString())
 
-        for(winNum in mWinNumberList) {
-
+        mWinNumberList.forEachIndexed { index, winNum ->
+            mWinNumTextViewList[index].text = winNum.toString()
         }
 //        보너스번호 생성
-//        텍스트뷰에 배치
+        while (true) {
+            val randomNum = (Math.random() * 45 + 1).toInt()
+            if (!mWinNumberList.contains(randomNum)) {
+                mBonusNum = randomNum
+                break
+            }
+        }
+    //        텍스트뷰에 배치
 
     }
     private fun setValues() {
-
+        mWinNumTextViewList.add(txtWinNum01)
+        mWinNumTextViewList.add(txtWinNum02)
+        mWinNumTextViewList.add(txtWinNum03)
+        mWinNumTextViewList.add(txtWinNum04)
+        mWinNumTextViewList.add(txtWinNum05)
+        mWinNumTextViewList.add(txtWinNum06)
     }
+}
+
+private fun <E> ArrayList<E>.add(element: TextView?) {
+
 }
