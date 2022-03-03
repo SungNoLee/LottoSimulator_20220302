@@ -168,7 +168,6 @@ class MainActivity : AppCompatActivity() {
 
     }
     private fun setValues() {
-        nH
         mWinNumTextViewList.add(txtWinNum01)
         mWinNumTextViewList.add(txtWinNum02)
         mWinNumTextViewList.add(txtWinNum03)
