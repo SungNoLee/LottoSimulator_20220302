@@ -44,6 +44,10 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
+//        만들어진 당첨번호 6개를 -> 작은 수
+        mWinNumberList.sort()   // 자바로 직접 짜던 로직을 > 객체지향의 특성, 만들어져있는 기능 활용으로 대체.
+
 //        만들어진 당첨번호 6개를 -> 텍스트뷰에 표현
         Log.d("당첨번호", mWinNumberList.toString())
 
