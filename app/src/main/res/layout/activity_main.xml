@@ -170,7 +170,7 @@
             android:layout_height="wrap_content"
             android:text="1등 : "/>
         <TextView
-            android:id="@+id/txtNumWin1"
+            android:id="@+id/txtRankCount1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -185,7 +185,7 @@
             android:layout_height="wrap_content"
             android:text="2등 : "/>
         <TextView
-            android:id="@+id/txtNumWin2"
+            android:id="@+id/txtRankCount2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -200,7 +200,7 @@
             android:layout_height="wrap_content"
             android:text="3등 : "/>
         <TextView
-            android:id="@+id/txtNumWin3"
+            android:id="@+id/txtRankCount3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -215,7 +215,7 @@
             android:layout_height="wrap_content"
             android:text="4등 : "/>
         <TextView
-            android:id="@+id/txtNumWin4"
+            android:id="@+id/txtRankCount4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -231,7 +231,7 @@
             android:layout_height="wrap_content"
             android:text="5등 : "/>
         <TextView
-            android:id="@+id/txtNumWin5"
+            android:id="@+id/txtRankCount5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -247,7 +247,7 @@
             android:layout_height="wrap_content"
             android:text="낙첨 : "/>
         <TextView
-            android:id="@+id/txtNumWin6"
+            android:id="@+id/txtRankCountFail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"

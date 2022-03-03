@@ -3,6 +3,7 @@ package com.neppplus.lottosimulator_20220302
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
@@ -14,18 +15,20 @@ class MainActivity : AppCompatActivity() {
 //    코틀린은 단순 배열 초기화 int[] arr={}; 문번 x
     val mMyNumbers = arrayOf(13, 17, 23, 27, 36, 41)
     lateinit var mHandler : Handler
+    var isAutoNow = false;
+
 //    핸들러가 반복 실행할 코드()를 인터페이스를 이용해 변수로 저장.
     val buyLottoRunnable = object : Runnable {
     override fun run() {
 //    물려받은 추상메쏘드 구현
-        if (mUsedMoney < 10000000) {
+        if (mUsedMoney <= 10000000) {
             buyLotto()
 
 //            핸들러에게 다음 할일로 이코드를 다시 등록
             mHandler.post(this)
         }
         else {
-            Toast.makeText(this@MainActivity, "자동 구래가 완료되었습니다.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@MainActivity, "자동 거래래가 완료되었습니다.", Toast.LENGTH_SHORT).show()
         }
 //        그렇지 않으면
     }
@@ -62,12 +65,21 @@ class MainActivity : AppCompatActivity() {
     private fun setupEvents() {
 
         btnAutoBuy.setOnClickListener {
-            mHandler.post(buyLottoRunnable)
+            if(!isAutoNow) {
+                mHandler.post(buyLottoRunnable)
+                isAutoNow = true
+                btnAutoBuy.text = "자동 구매 중단하기"
+            }
+            else {
+//                핸들러에 등록된 다음 할 일(구매) 제거
+                mHandler.removeCallbacks(buyLottoRunnable)
+                isAutoNow = false
+                btnAutoBuy.text = "자동 구매 제개하기"
+            }
         }
 
         btnBuyLotto.setOnClickListener {
             buyLotto()
-            checkLottoRank()
         }
     }
 
@@ -115,6 +127,7 @@ class MainActivity : AppCompatActivity() {
 
     //        텍스트뷰에 배치
         txtBonusNum.text = mBonusNum.toString()
+        checkLottoRank()
     }
 
     private fun checkLottoRank() {
@@ -166,8 +179,17 @@ class MainActivity : AppCompatActivity() {
         txtUsedMoney.text = "${NumberFormat.getInstance().format(mUsedMoney)} 원"
         txtWinMoney.text = "${NumberFormat.getInstance().format(mEarnMoney)} 원"
 
+        txtRankCount1.text = "${rankCount1}회"
+        txtRankCount2.text = "${rankCount2}회"
+        txtRankCount3.text = "${rankCount3}회"
+        txtRankCount4.text = "${rankCount4}회"
+        txtRankCount5.text = "${rankCount5}회"
+        txtRankCountFail.text = "${rankCountNot}회"
     }
     private fun setValues() {
+
+        mHandler = Handler(Looper.getMainLooper())
+
         mWinNumTextViewList.add(txtWinNum01)
         mWinNumTextViewList.add(txtWinNum02)
         mWinNumTextViewList.add(txtWinNum03)
