@@ -8,6 +8,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+//    내 번호 6개
+//    코틀린은 단순 배열 초기화 int[] arr={}; 문번 x
+    val mMyNumbers = arrayOf(13, 17, 23, 27, 36, 41)
+
 //    컴퓨터다 뽑은 당첨번호 6개를 저장할 ArrayList
     val mWinNumberList = ArrayList<Int>()
     var mBonusNum = 0   // 보너스번호는 매 판마다 새로 뽑아야함. 변경소지 0, 화면이 어딘지는 줄 필요X 바로 대입 var
@@ -54,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         mWinNumberList.sort()   // 자바로 직접 짜던 로직을 > 객체지향의 특성, 만들어져있는 기능 활용으로 대체.
 
 //        만들어진 당첨번호 6개를 -> 텍스트뷰에 표현
-        Log.d("당첨번호", mWinNumberList.toString())
+//        Log.d("당첨번호", mWinNumberList.toString())
 
         mWinNumberList.forEachIndexed { index, winNum ->
             mWinNumTextViewList[index].text = winNum.toString()
@@ -67,8 +71,13 @@ class MainActivity : AppCompatActivity() {
                 break
             }
         }
-    //        텍스트뷰에 배치
 
+    //        텍스트뷰에 배치
+        txtBonusNum.text = mBonusNum.toString()
+    }
+
+    private fun checkLottoRank() {
+        var correctCount = 0
     }
     private fun setValues() {
         mWinNumTextViewList.add(txtWinNum01)
@@ -78,8 +87,4 @@ class MainActivity : AppCompatActivity() {
         mWinNumTextViewList.add(txtWinNum05)
         mWinNumTextViewList.add(txtWinNum06)
     }
-}
-
-private fun <E> ArrayList<E>.add(element: TextView?) {
-
 }
