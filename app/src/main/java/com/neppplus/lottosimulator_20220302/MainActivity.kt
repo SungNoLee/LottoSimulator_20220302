@@ -60,6 +60,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupEvents() {
+
+        btnAutoBuy.setOnClickListener {
+            mHandler.post(buyLottoRunnable)
+        }
+
         btnBuyLotto.setOnClickListener {
             buyLotto()
             checkLottoRank()
